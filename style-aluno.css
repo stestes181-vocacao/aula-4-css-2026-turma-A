@@ -14,6 +14,12 @@
 
 /* Fontes extras (a Inter já vem pelo <link> do HTML).
    @import também é CSS — carregamos o resto sem tocar no HTML. */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+body{
+    font-family: "Open Sans", sans-serif;
+}
+
 
 
 
@@ -23,7 +29,55 @@
    Vantagem: mudar um valor aqui muda o site inteiro.
    Sintaxe: --nome-da-variavel: valor;  /  usar com var(--nome-da-variavel)
    ========================================================================= */
+:root{
+    /*--- paleta tema"cyber figital"--- */
+--azul: #0505008; /*fundo profundo - o espaço*/
+--azul-suave: hwb(120 64% 35% / 0.973); /*painéis sobre o fundo */   
+--azul-card: lch(72.94% 0.01 296.81 / 0.677); /*cards da stefani*/
+--azul-glass: #b1b1b1dc;/*glassmorphism*/
+/*A cor primária: ciano elétrico*/
+--ciano: hsl(180, 2%, 64%);
+--ciano-glow: lab(72.05% -0.7 -0.25 / 0.35);
+--ciano-dim: hsla(180, 0%, 61%, 0.855);
+--ciano-escuro: hsl(200, 1%, 51%);
 
+/*cor secundaria: roxo/violeta*/
+--violeta: hsl(270, 1%, 63%);
+--violeta-glow: #999999d1;
+--violeta-dim: hsl(270, 1%, 46%);
+
+/*Acento: verde neon*/
+--verde-neon: #39ff14;
+--verde-dim: rgba(57, 255, 20, 0.1);
+
+/*Textos*/
+--texto-claro: #eeeef5;
+--texto-claro-suave: rgba(238, 238, 245, 0.5);
+--texto-claro-dim: rgba(238, 138, 245, 0.25);
+
+/*Bordas e linhas*/
+--borda: rgba(0, 245, 255, 0.12);
+--borda-forte: rgba(0, 245, 255, 0.04);
+--linha-grid: rgba(0, 245, 255, 0.04);
+
+/*tipografia*/
+--fonte-display: "outifity", "Arial Black", sans-serif;
+--fonte-texto: "space grotesk", "inter", Arial, sans-serif;
+--font-mono: "space mono", "courier new", monospace;
+
+/*Espaçamento*/
+--espaco-xs: 0.25rem;
+--espaco-sm: 0.5rem;
+--espaco-lg: 3rem;
+--espaco-lx: 6rem;
+/*  Bordas e sombras*/
+--raio: 12px;
+--raio-lg: 20px;
+--raio-pill: 9999px;
+--sombra-ciano: 0 0 40px rgba(0, 245, 255, 0.15), 0 24px 48px rgba(0,0,0,0.5);
+--sombra-violeta: 0 0 40px rgba(168, 85, 247, 0.2), 0 24px 48px rgba(0,0,0,0.5);
+--sombra-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
 
 
 /* =========================================================================
@@ -338,6 +392,7 @@ img, video {
 }
 
 
+
 /* =========================================================================
    5) PLACEHOLDERS DE MÍDIA
    Esta caixa indica onde a turma vai inserir <img> ou <video>.
@@ -504,7 +559,7 @@ main > section {
     background: linear-gradient(
         135deg,
         var(--texto-claro) 0%,
-        rgba(0, 245, 255, 0.9) 50%,
+        rgba(255, 0, 0, 0) 50%,
         var(--violeta) 100%
     );
     -webkit-background-clip: text;
