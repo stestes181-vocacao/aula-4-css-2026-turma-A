@@ -1,2 +1,2 @@
-# aula-4-css-2026-turma-A
-variáveis root, flex box, grid, transições, animações e responsividade
+# Aula-4-CSS-2026-Turma-A
+Variáveis root, flex box, grid, transições, animações e responsividade.
