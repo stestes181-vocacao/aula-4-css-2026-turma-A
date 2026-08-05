@@ -32,33 +32,33 @@ body{
 :root{
     /*--- paleta tema"cyber figital"--- */
 --azul: #0505008; /*fundo profundo - o espaço*/
---azul-suave: hwb(120 64% 35% / 0.973); /*painéis sobre o fundo */   
---azul-card: lch(72.94% 0.01 296.81 / 0.677); /*cards da stefani*/
---azul-glass: #b1b1b1dc;/*glassmorphism*/
+--azul-suave: hwb(60 8% 91% / 0.973); /*painéis sobre o fundo */   
+--azul-card: lch(9.09% 1.56 19.78 / 0.677); /*cards da stefani*/
+--azul-glass: hwb(320 4% 95% / 0.984);/*glassmorphism*/
 /*A cor primária: ciano elétrico*/
---ciano: hsl(180, 2%, 64%);
---ciano-glow: lab(72.05% -0.7 -0.25 / 0.35);
---ciano-dim: hsla(180, 0%, 61%, 0.855);
---ciano-escuro: hsl(200, 1%, 51%);
+--ciano: hsla(300, 14%, 1%, 0.895);
+--ciano-glow: lab(1.92% 0 0 / 0.35);
+--ciano-dim: hsla(0, 4%, 10%, 0.855);
+--ciano-escuro: hsl(0, 0%, 1%);
 
 /*cor secundaria: roxo/violeta*/
---violeta: hsl(270, 1%, 63%);
---violeta-glow: #999999d1;
---violeta-dim: hsl(270, 1%, 46%);
+--violeta: hsl(270, 14%, 5%);
+--violeta-glow: #080808d1;
+--violeta-dim: hsl(280, 13%, 5%);
 
 /*Acento: verde neon*/
---verde-neon: #39ff14;
---verde-dim: rgba(57, 255, 20, 0.1);
+--verde-neon: #181c17;
+--verde-dim: rgba(15, 17, 15, 0.1);
 
 /*Textos*/
---texto-claro: #eeeef5;
---texto-claro-suave: rgba(238, 238, 245, 0.5);
---texto-claro-dim: rgba(238, 138, 245, 0.25);
+--texto-claro: #121214;
+--texto-claro-suave: rgba(12, 12, 12, 0.5);
+--texto-claro-dim: rgba(33, 27, 34, 0.956);
 
 /*Bordas e linhas*/
---borda: rgba(0, 245, 255, 0.12);
---borda-forte: rgba(0, 245, 255, 0.04);
---linha-grid: rgba(0, 245, 255, 0.04);
+--borda: rgba(10, 12, 10, 0.99);
+--borda-forte: rgba(17, 19, 18, 0.934);
+--linha-grid: rgba(24, 23, 28, 0.988);
 
 /*tipografia*/
 --fonte-display: "outifity", "Arial Black", sans-serif;
@@ -74,9 +74,23 @@ body{
 --raio: 12px;
 --raio-lg: 20px;
 --raio-pill: 9999px;
---sombra-ciano: 0 0 40px rgba(0, 245, 255, 0.15), 0 24px 48px rgba(0,0,0,0.5);
---sombra-violeta: 0 0 40px rgba(168, 85, 247, 0.2), 0 24px 48px rgba(0,0,0,0.5);
---sombra-card: 0 8px 32px rgba(0, 0, 0, 0.4);
+--sombra-ciano: 0 0 40px rgb(10, 15, 17), 0 24px 48px rgba(0,0,0,0.5);
+--sombra-violeta: 0 0 40px rgba(19, 18, 18, 0.995), 0 24px 48px rgba(0,0,0,0.5);
+--sombra-card: 0 8px 32px rgba(18, 18, 19, 0.963);
+
+/*---Transições---*/
+--transicao-rapoda: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+--transicao-padrão: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+--transicao-lenta: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+--transicão-spring: 0.5s cubic-bezier(0.34,1.56, 0.64,1);
+
+/*Tamanho da grade decorativa*/
+--grade: 64px;
+
+/*Nav: largura do indicador mágico*/
+--Nav-indicador-y: 130px;
+--nav-indicador-h: 44px;
+
 }
 
 
@@ -87,6 +101,7 @@ body{
    - Propriedades como color, font-family e line-height são HERDADAS:
      defina uma vez no <body> e os filhos recebem automaticamente.
    - Propriedades como margin, padding e border NÃO são herdadas.
+   
    ========================================================================= */
 *, *::before, *::after {
     margin: 0;
@@ -121,8 +136,8 @@ body::before {
     inset: 0;
     z-index: 0;
     background:
-        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(0, 245, 255, 0.06) 0%, transparent 60%),
-        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(168, 85, 247, 0.06) 0%, transparent 60%);
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(233, 237, 237, 0.993) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgb(235, 227, 235) 0%, transparent 60%);
     pointer-events: none;
 }
 
@@ -229,24 +244,57 @@ img, video {
    que serve de "pílula" destacando o item ativo (ou hovered).
    Cada <li> ao receber :hover "move" o indicador via CSS variables.
    ----------------------------------------------------------------------- */
-
+.topo__nav ul{
+    display: flex; /*flex dentro de flex: válido e comum*/
+    align-items: center;
+    gap: 0; /*sem gap os itens ficam lado a lado*/
+    position: relative;
+    padding: 6px;
+    background: rgba(5, 5, 8, 0.75);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio-pill);
+    
+}
 
 /* O indicador deslizante — feito 100% com CSS, sem JS, sem HTML extra.
    É o ::before do <ul>, posicionado absolutamente. */
-
+.topo__nav ul::before{
+    content:'';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    height: calc(100% - 12px);
+    width: var(--nav-indicador-w);
+    border-radius: var (--raio-pill);
+    background: linear-gradient(135deg, var(--ciano)0% , var(--violeta) 100%);
+    box-shadow: 0 0 20px var(--ciano-glow), 0 0 40px var (--violeta-glow);
+    transition: transform var(--transicao-spring), width var(--transicao-spring);
+    z-index: 0;
+    /*começa na posição 0 (primeiro item)*/
+    transform: translateX();
+    
+}
 
 /* Quando o 1º li recebe hover, indicador vai para posição 0 */
-
+.topo__nav ul:has(:nth-child(1):hover) ::before{
+    transform: translateX(0px);}
 /* Quando o 2º li recebe hover */
-
+.topo__nav ul:has(li:nth-child(2):hover) ::before{
+    transform: translateX(calc(var(--nav-indicador-w) * 1));}
 /* Quando o 3º li recebe hover */
-
+.topo_nav ul:has(li:nth-child(3):hover)::before{
+    transform: translateX(calc(var(--nav-indicador-w) * 2));}
 /* Quando o 4º li recebe hover */
-
+.topo_nav ul:has(li:nth-child(4):hover)::before{
+    transform: translateX(calc(var(--nav-indicador-w) * 3));}
 /* Quando o 5º li (Contato) recebe hover — botão separado, indicador some */
+.topo_nav ul:has(li:nth-child(5):hover)::before{
+    transform: translateX(calc(var(--nav-indicador-w) *4));}
 
-
-
+.topo-nav li{
+    position:relative 1;
+    z-index: 1;
+}
 
 
 
